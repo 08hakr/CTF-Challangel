@@ -22,6 +22,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 300px;
+            overflow: hidden; /* Ensures text stays within the container */
         }
 
         h1 {
@@ -38,14 +39,26 @@
             font-size: 14px;
             color: red;
             margin-top: 20px;
+            white-space: nowrap; /* Prevents text from wrapping */
+            overflow: hidden;
+            animation: scrollText 10s linear infinite;
+        }
+
+        @keyframes scrollText {
+            0% {
+                transform: translateX(100%);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Private Site</h1>
-        <p>Welcome to this private site. Access is restricted and you cannot navigate away from this page.</p>
-        <div class="notice">You are not authorized to access other pages.</div>
+        <p>Welcome to this private site.</p>
+        <div class="notice">Access is restricted and you cannot navigate away from this page.</div>
     </div>
 </body>
 </html>
