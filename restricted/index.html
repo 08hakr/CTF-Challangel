@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Text Appearance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            position: relative;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars from appearing */
+        }
+
+        .message {
+            position: absolute;
+            white-space: nowrap; /* Ensures text stays in one line */
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Array of possible colors
+        const colors = ['red', 'green', 'blue', 'orange', 'purple', 'brown', 'pink'];
+
+        // Function to generate a random position for the text
+        function getRandomPosition() {
+            const maxWidth = window.innerWidth - 200; // Ensures the text stays within the window width
+            const maxHeight = window.innerHeight - 50; // Ensures the text stays within the window height
+            const x = Math.random() * maxWidth;
+            const y = Math.random() * maxHeight;
+            return { x, y };
+        }
+
+        // Function to generate a random color
+        function getRandomColor() {
+            return colors[Math.floor(Math.random() * colors.length)];
+        }
+
+        // Function to generate a random font size from h1 to h5
+        function getRandomFontSize() {
+            const sizes = ['2em', '1.5em', '1.17em', '1em', '0.83em']; // Corresponding sizes for h1 to h5
+            return sizes[Math.floor(Math.random() * sizes.length)];
+        }
+
+        // Function to create a new text element at a random position, color, and size
+        function createTextElement() {
+            const position = getRandomPosition();
+            const color = getRandomColor();
+            const fontSize = getRandomFontSize();
+
+            const message = document.createElement('div');
+            message.className = 'message';
+            message.style.left = `${position.x}px`;
+            message.style.top = `${position.y}px`;
+            message.style.color = color;
+            message.style.fontSize = fontSize;
+            message.textContent = "You're so close";
+
+            document.body.appendChild(message);
+        }
+
+        // Set an interval to create a new text element every 0.3 seconds (300 milliseconds)
+        setInterval(createTextElement, 300);
+    </script>
+</body>
+</html>
